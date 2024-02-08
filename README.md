@@ -154,7 +154,7 @@ Na tym rola C2 w momencie pisania writeupu kończy się.
 
 ### 3. Działanie atakującego.
 ### a) CHROMIUM
-Po otrzymaniu alertu mailowego, atakujący uwierzytelnia się po SSH na serwerze, za pomocą SCP pobiera zaszyfrowane archiwum i wypakowuje je do określonego folderu. By odszyfrować dane z Chromium, należy wykorzystać skrypt napisany w pythonie. Skrypt deszyfruje dowolną bazę danych, można wybrać, dla której przeglądarki ma działać, oraz, co ważne - tworzy nową bazę SQLite, z zaszyfrowanymi kluczem atakującego  ciastkami. Jest to o tyle istotne, że żeby uzyskać dostęp do wszystkich witryn, na których była zalogowana ofiara, wystarczy jedynie podmienić plik z ciastkami w %localappdata% - po uruchomieniu przeglądarki, jest możliwe uwierzytelnienie się w serwisach, nawet omijając 2FA. Można też wyłuskać pojedyncze ciasteczka, otwierając plik Cookies_plain w dowolnej przeglądarce baz SQLite.
+Po otrzymaniu alertu mailowego, atakujący uwierzytelnia się po SSH na serwerze, za pomocą SCP pobiera zaszyfrowane archiwum i wypakowuje je do określonego folderu. By odszyfrować dane z Chromium, należy wykorzystać skrypt napisany w pythonie. Skrypt deszyfruje dowolną bazę danych, można wybrać, dla której przeglądarki ma działać, oraz, co ważne - tworzy nową bazę SQLite, z zaszyfrowanymi kluczem atakującego ciastkami. Jest to o tyle istotne, że żeby uzyskać dostęp do wszystkich witryn, na których była zalogowana ofiara, wystarczy jedynie podmienić plik z ciastkami w %localappdata% - po uruchomieniu przeglądarki, jest możliwe uwierzytelnienie się w serwisach, nawet omijając 2FA. Można też wyłuskać pojedyncze ciasteczka, otwierając plik Cookies_plain w dowolnej przeglądarce baz SQLite.
 
 Działanie skryptu wygląda następująco:
 
@@ -173,15 +173,16 @@ sequenceDiagram
 Skrypt->>Użytkownik: 1- Brave, 2 - Chrome, 3 - Edge, 4 - Opera
 Użytkownik-->>Skrypt: 2
 Skrypt->>Użytkownik: Podaj klucz dla Chrome
-Użytkownik-->>Skrypt: 3C3C2F41439F83AD56FD70B1A8C9DB7B0DC612FDDBBFEAC26E04D9E1EFXXXXXX
-Skrypt->>Użytkownik: Tworzę kopię bazy, deszyfruję każdy wiersz pola "encrypted_value"
+Użytkownik-->>Skrypt: 3C3C2F41439F83AD56FD70B1A8C9DB7B0DC612FDDBBFEAC26E04DXXXXXXXXXXX
+Skrypt->>Użytkownik: Tworzę kopię bazy (plik Cookies_stolen) oraz deszyfruję każdy wiersz pola "encrypted_value"
 Skrypt->>Użytkownik: odszyfrowaną wartość zapisuję do pliku Cookies_plain
-Skrypt->>Użytkownik: Szyfruje uzyskane wartości kluczem użytkownika i aktualizuje pole "encrypted_value" 
+Skrypt->>Użytkownik: Szyfruje uzyskane wartości kluczem użytkownika i aktualizuje pole "encrypted_value" w bazie Cookies_stolen
+Skrypt->>Użytkownik: Deszyfruję loginy oraz hasła i zapisuje je do Logins_stolen w plaintext.
 ```
 
 
 Do jego działania wymagany jest Python, system Windows oraz moduły do pythona: **sqlite3, base64, json, pypiwin32, pycryptodomex**
-
+Po wykonaniu skryptu, atakujący ma dostęp do serwisów, w których ofiara była zalogowana, ponadto posiada zapisane loginy i hasła w przeglądarce. 
 
 ### b) Firefox
 W przypadku przeglądarki Firefox, można od razu przystąpić do analizy pliku **cookies.sqlite**, ponieważ ciastka są w nim zapisane w formie jawnej. 
