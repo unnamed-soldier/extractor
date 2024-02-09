@@ -158,16 +158,6 @@ Po otrzymaniu alertu mailowego, atakujący uwierzytelnia się po SSH na serwerze
 
 Działanie skryptu wygląda następująco:
 
- - Wyświetl opcje wyboru dla użytkownika: Dla której przeglądarki chcesz zdeszyfrować dane? 
- 1- Brave, 2- Chrome, 3- Edge, 4- Opera 
- - Zapytaj użytkownika o klucz, którym są zaszyfrowane dane
- - Po uzyskaniu klucza, stwórz kopię bazy ciastek, przystąp do deszyfracji
- - Przystąp do szyfrowania danych tym razem kluczem użytkownika
- - Zapisz w Cookies_stolen 
- - Zapisz jawne ciastka w Cookies_plain
- - Przystąp do deszyfracji loginów i haseł
- - Zapisz zdeszyfrowane loginy i hasła w Logins_stolen
-
 ```mermaid
 sequenceDiagram
 Skrypt->>Użytkownik: 1- Brave, 2 - Chrome, 3 - Edge, 4 - Opera
