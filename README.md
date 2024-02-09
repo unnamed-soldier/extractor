@@ -191,4 +191,4 @@ Do jego działania wymagana jest biblioteka nss3.dll oraz system windows z inter
 
 PoC prezentuje załączony film. Kody źródłowe wszystkich skryptów mogą zostać udostępnione na życzenie. 
 
-[![Watch the video](https://img.youtube.com/vi/3hZ3d9G4gyo/maxresdefault.jpg)](https://youtu.be/3hZ3d9G4gyo)
+[![Obejrzyj film](https://img.youtube.com/vi/3hZ3d9G4gyo/maxresdefault.jpg)](https://youtu.be/3hZ3d9G4gyo)
