@@ -179,6 +179,6 @@ W przypadku przeglądarki Firefox, można od razu przystąpić do analizy pliku 
 Do deszyfrowania haseł, należy użyć skryptu napisanego w Pythonie, znalezionego w serwisie github, ale zmodyfikowanego tak, by umożliwiał deszyfrowanie dowolnych baz z hasłami. 
 Do jego działania wymagana jest biblioteka nss3.dll oraz system windows z interpreterem Python wraz z jego modułami: **argparse, csv, ctypes, json, logging, select, sqlite3, base64, getpass, urllib**. 
 
-PoC prezentuje załączony film. Kody źródłowe wszystkich skryptów mogą zostać udostępnione na życzenie. 
+PoC prezentuje poniższy film (trzeba kliknąć, by obejrzeć). Kody źródłowe wszystkich skryptów mogą zostać udostępnione na życzenie. 
 
 [![Obejrzyj film](https://img.youtube.com/vi/3hZ3d9G4gyo/maxresdefault.jpg)](https://youtu.be/3hZ3d9G4gyo)
