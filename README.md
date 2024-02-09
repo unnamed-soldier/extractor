@@ -123,7 +123,7 @@ W dalszej części zostały przypisane do zmiennych nazwy plików, które malwar
 
     echo "decryptedKey in hex coding:   [$(($decryptedKey|ForEach-Object ToString X2) -join '')]" | Out-File -FilePath "$env:localappdata\brave_data\key.txt"
 
-Dzieje się to poprzez odczytanie pliku w formacie JSON o nazwie **Local State**, pozyskanie wartości klucza o nazwie **os_crypt.encrypted_key**, następnie odkodowaniu go z base64, odcięciu pierwszych pięciu znaków (NPAPI) i zdeszyfrowaniu go poleceniem **[Security.Cryptography.ProtectedData]::Unprotect(\$enckey,\$null, [Security.Cryptography.DataProtectionScope]::CurrentUser)**
+Dzieje się to poprzez odczytanie pliku w formacie JSON o nazwie **Local State**, pozyskanie wartości klucza o nazwie **os_crypt.encrypted_key**, następnie odkodowaniu go z base64, odcięciu pierwszych pięciu znaków (DPAPI) i zdeszyfrowaniu go poleceniem **[Security.Cryptography.ProtectedData]::Unprotect(\$enckey,\$null, [Security.Cryptography.DataProtectionScope]::CurrentUser)**
 
 W przeciwieństwie do manualnej próby pozyskania loginów i haseł z przeglądarki, przy użyciu tego polecenia nie jest wymagana żadna interakcja użytkownika - w przeglądarce przy próbie wyświetlenia zapisanych haseł konieczne jest podanie poświadczeń użytkownika. Polecenie te omija również uwierzytelnienie biometryczne (testowano na uwierzytelnieniu przez odcisk palca).
 Wynikiem działania jest klucz w formie heksadecymalnej, zapisywany do pliku **key\.txt**
